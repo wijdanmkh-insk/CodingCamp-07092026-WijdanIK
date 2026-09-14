@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revilist</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Name Popup ─────────────────────────────────────────── -->
+  <div id="name-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+    <div class="popup">
+      <h2 id="popup-title">Welcome to Revilist 👋</h2>
+      <p>What should we call you?</p>
+      <input id="name-input" type="text" placeholder="Your name…" maxlength="40" autocomplete="off" />
+      <p id="name-error" class="error-msg hidden">Please enter your name.</p>
+      <button id="name-save-btn" class="btn btn-primary">Let's go →</button>
+    </div>
+  </div>
+
+  <!-- ── Top Bar ─────────────────────────────────────────────── -->
+  <header class="topbar">
+    <span class="brand">Revilist</span>
+    <div class="topbar-actions">
+      <button id="theme-toggle" class="icon-btn" title="Toggle light / dark mode" aria-label="Toggle theme">
+        <span id="theme-icon">🌙</span>
+      </button>
+      <button id="edit-name-btn" class="icon-btn" title="Change your name" aria-label="Change name">✏️</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ── Greeting ───────────────────────────────────────────── -->
+    <section class="greeting-section">
+      <h1 id="greeting-text">Hello!</h1>
+      <p class="date-display" id="date-display"></p>
+    </section>
+
+    <!-- ── Focus Timer ────────────────────────────────────────── -->
+    <section class="card" id="timer-section">
+      <div class="card-header">
+        <h2>🍅 Focus Timer</h2>
+        <button id="timer-settings-btn" class="icon-btn" title="Change timer duration" aria-label="Timer settings">⚙️</button>
+      </div>
+
+      <!-- Timer settings panel (hidden by default) -->
+      <div id="timer-settings" class="timer-settings hidden">
+        <label for="pomodoro-input">Focus (min)</label>
+        <input id="pomodoro-input" type="number" min="1" max="120" value="25" />
+        <label for="break-input">Break (min)</label>
+        <input id="break-input" type="number" min="1" max="30" value="5" />
+        <button id="timer-settings-save" class="btn btn-small btn-primary">Save</button>
+      </div>
+
+      <div class="timer-display">
+        <span id="timer-mode-label" class="timer-mode">Focus</span>
+        <div id="timer-clock" class="timer-clock">25:00</div>
+      </div>
+
+      <div class="timer-controls">
+        <button id="timer-toggle-btn" class="btn btn-start" aria-label="Start timer">▶ Start</button>
+        <button id="timer-reset-btn" class="btn btn-secondary" aria-label="Reset timer">↺ Reset</button>
+      </div>
+    </section>
+
+    <!-- ── To-Do List ──────────────────────────────────────────── -->
+    <section class="card" id="todo-section">
+      <div class="card-header">
+        <h2>✅ To-Do List</h2>
+        <div class="todo-header-actions">
+          <label for="sort-select" class="sr-only">Sort tasks</label>
+          <select id="sort-select" class="sort-select" title="Sort tasks">
+            <option value="added">Order added</option>
+            <option value="deadline">By deadline</option>
+            <option value="status">By status</option>
+          </select>
+        </div>
+      </div>
+
+      <form id="todo-form" class="todo-form" autocomplete="off">
+        <input id="todo-input" type="text" placeholder="Add a new task…" maxlength="120" />
+        <input id="todo-deadline" type="date" title="Deadline (optional)" />
+        <button type="submit" class="btn btn-primary btn-small">Add</button>
+      </form>
+      <p id="todo-error" class="error-msg hidden">Task already exists.</p>
+
+      <ul id="todo-list" class="todo-list" aria-label="Task list"></ul>
+      <p id="todo-empty" class="empty-msg">No tasks yet. Add one above! 🎉</p>
+    </section>
+
+    <!-- ── Saved Links ─────────────────────────────────────────── -->
+    <section class="card" id="links-section">
+      <div class="card-header">
+        <h2>🔗 Saved Links</h2>
+      </div>
+
+      <form id="link-form" class="link-form" autocomplete="off">
+        <input id="link-name-input" type="text" placeholder="Link name…" maxlength="60" />
+        <input id="link-url-input" type="url" placeholder="https://…" />
+        <button type="submit" class="btn btn-primary btn-small">Add</button>
+      </form>
+      <p id="link-error" class="error-msg hidden">Please provide a valid name and URL.</p>
+
+      <ul id="link-list" class="link-list" aria-label="Saved links"></ul>
+      <p id="link-empty" class="empty-msg">No links saved yet. Add one above! 🌐</p>
+    </section>
+
+  </main>
+
+  <!-- ── Edit Task Modal ────────────────────────────────────── -->
+  <div id="edit-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="edit-title">
+    <div class="popup">
+      <h2 id="edit-title">Edit Task</h2>
+      <input id="edit-task-input" type="text" maxlength="120" />
+      <input id="edit-task-deadline" type="date" />
+      <p id="edit-error" class="error-msg hidden">Task already exists.</p>
+      <div class="popup-actions">
+        <button id="edit-save-btn" class="btn btn-primary">Save</button>
+        <button id="edit-cancel-btn" class="btn btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
